@@ -1,0 +1,72 @@
+{
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Aurora X",
+    "workbench.iconTheme": "helium-icon-theme",
+    "workbench.statusBar.visible": true,
+    "editor.minimap.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 16,
+    "editor.fontLigatures": true,
+    "editor.lineNumbers": "on",
+    "editor.tabCompletion": "on",
+    "editor.formatOnSave": true,
+    "editor.wrappingIndent": "indent",
+    "terminal.integrated.fontWeight": 1,
+    "todo-tree.general.tags": [
+        "BUG:",
+        "HACK:",
+        "FIXME:",
+        "TODO:",
+        "NOTE:"
+    ],
+    "todo-tree.highlights.customHighlight": {
+        "HACK:": {
+            "foreground": "#ecf0f1",
+            "background": "#9b59b6",
+            "iconColour": "#9b59b6",
+            "borderRadius": "4px",
+            "type": "tag",
+            "gutterIcon": true,
+            "icon": "tools"
+        },
+        "FIXME:": {
+            "foreground": "#ecf0f1",
+            "background": "#be9b0b",
+            "iconColour": "#be9b0b",
+            "borderRadius": "4px",
+            "type": "tag",
+            "gutterIcon": true,
+            "icon": "alert"
+        },
+        "BUG:": {
+            "foreground": "#ecf0f1",
+            "background": "#e74c3c",
+            "iconColour": "#e74c3c",
+            "borderRadius": "4px",
+            "type": "tag",
+            "gutterIcon": true,
+            "icon": "bug"
+        },
+        "TODO:": {
+            "foreground": "#ecf0f1",
+            "background": "#2ecc71",
+            "iconColour": "#2ecc71",
+            "borderRadius": "4px",
+            "type": "tag",
+            "gutterIcon": true,
+            "icon": "checkbox"
+        },
+        "NOTE:": {
+            "foreground": "#ecf0f1",
+            "background": "#3498db",
+            "iconColour": "#3498db",
+            "borderRadius": "4px",
+            "type": "tag",
+            "gutterIcon": true,
+            "icon": "info",
+            "hideFromTree": true
+        }
+    }
+}
