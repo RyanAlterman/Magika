@@ -1,0 +1,42 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - "v*"
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        strategy:
+            matrix:
+                os:
+                    - windows-latest
+
+        runs-on: ${{ matrix.os }}
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Configure
+              run: cmake --preset default
+
+            - name: Build
+              run: cmake --build --preset default
+
+            - name: Package Windows
+              if: runner.os == 'Windows'
+              shell: pwsh
+              run: |
+                  Compress-Archive `
+                  -Path build/* `
+                  -DestinationPath Magika-Windows.zip
+
+            - name: Create Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  files: |
+                      Magika-Windows.zip
