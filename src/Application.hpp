@@ -15,6 +15,10 @@ class Application
     Application(const Application&) = delete;
     Application& operator=(const Application&) = delete;
 
+    /**
+     * @brief Destroy the Application object.
+     *
+     */
     ~Application() = default;
 
     /**

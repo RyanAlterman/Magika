@@ -17,9 +17,13 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# TODO: Swap to Vulkan
+find_package(OpenGL REQUIRED)
+
 set(SourceFiles
     src/Main.cpp
     src/Application.cpp
+    src/Window/WindowManager.cpp
 )
 
 set(IncludeDirs
@@ -28,6 +32,7 @@ set(IncludeDirs
 set(ExternalLibs
     spdlog::spdlog
     glfw
+    OpenGL::GL
 )
 
 add_executable(${PROJECT_NAME} ${SourceFiles})

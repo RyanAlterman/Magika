@@ -1,5 +1,7 @@
 #include "Application.hpp"
 
+#include "Window/WindowManager.hpp"
+
 namespace Magika
 {
 Application& Application::Instance()
@@ -14,10 +16,12 @@ void Application::Run()
 
     // TODO: Implement a proper main loop with event handling, timing, and rendering
     // TODO: Update loop to use window as loop control
-    while (false) // Main loop
+    while (WindowManager::Instance().IsWindowOpen())
     {
+        // TODO: Rendering
+        glClear(GL_COLOR_BUFFER_BIT);
+
         Update();
-        // Render(); // You can add a Render function if needed
     }
 
     Shutdown();
@@ -25,16 +29,16 @@ void Application::Run()
 
 void Application::Initialize()
 {
-    // Initialization code here
+    WindowManager::Instance().Initialize();
 }
 
 void Application::Update()
 {
-    // Update application state here
+    WindowManager::Instance().Update();
 }
 
 void Application::Shutdown()
 {
-    // Cleanup code here
+    WindowManager::Instance().Shutdown();
 }
 } // namespace Magika
