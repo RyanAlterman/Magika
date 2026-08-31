@@ -1,7 +1,9 @@
 #include "WindowManager.hpp"
 
 #include "../Logging/LoggingManager.hpp"
+#include "../Version.hpp"
 
+#include <sstream>
 #include <stdexcept>
 
 namespace Magika
@@ -15,6 +17,7 @@ WindowManager& WindowManager::Instance()
 void WindowManager::Initialize()
 {
     MK_LOG_TRACE("Initializing the Window Manager...");
+
     // Initialize GLFW
     if (!glfwInit())
         throw std::runtime_error("Failed to initialize GLFW");
@@ -26,7 +29,9 @@ void WindowManager::Initialize()
     glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
     // TODO: Should set these based on a Settings manager that is stored on disk
-    m_window = glfwCreateWindow(800, 600, "Magika", nullptr, nullptr);
+    std::stringstream windowTitle;
+    windowTitle << "Magika " << PROJECT_VERSION;
+    m_window = glfwCreateWindow(800, 600, windowTitle.str().c_str(), nullptr, nullptr);
     if (!m_window)
     {
         glfwTerminate();
