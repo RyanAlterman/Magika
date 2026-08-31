@@ -24,6 +24,7 @@ set(SourceFiles
     src/Main.cpp
     src/Application.cpp
     src/Window/WindowManager.cpp
+    src/Logging/LoggingManager.cpp
 )
 
 set(IncludeDirs
@@ -38,3 +39,16 @@ set(ExternalLibs
 add_executable(${PROJECT_NAME} ${SourceFiles})
 target_include_directories(${PROJECT_NAME} PRIVATE ${IncludeDirs})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${ExternalLibs})
+
+# Set define for Debug build
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message(STATUS "Configuring for a Debug build")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC "MK_DEBUG")
+endif()
+
+# Auto-generate Version.h
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/Version.hpp.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Version.hpp"
+    @ONLY
+)

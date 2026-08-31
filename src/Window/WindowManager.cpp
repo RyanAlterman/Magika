@@ -1,5 +1,7 @@
 #include "WindowManager.hpp"
 
+#include "../Logging/LoggingManager.hpp"
+
 #include <stdexcept>
 
 namespace Magika
@@ -12,9 +14,12 @@ WindowManager& WindowManager::Instance()
 
 void WindowManager::Initialize()
 {
+    MK_LOG_TRACE("Initializing the Window Manager...");
     // Initialize GLFW
     if (!glfwInit())
         throw std::runtime_error("Failed to initialize GLFW");
+
+    MK_LOG_TRACE("GLFW initialized successfully");
 
     // Create a GLFW window
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -28,16 +33,20 @@ void WindowManager::Initialize()
         glfwTerminate();
         throw std::runtime_error("Failed to create GLFW window");
     }
-
+    MK_LOG_TRACE("GLFW window created successfully");
     glfwMakeContextCurrent(m_window);
+
+    MK_LOG_INFO("Window manager initialized successfully");
 }
 
 void WindowManager::Shutdown()
 {
+    MK_LOG_TRACE("Shutting down the Window Manager...");
     if (m_window != nullptr)
         glfwDestroyWindow(m_window);
 
     glfwTerminate();
+    MK_LOG_INFO("Window manager shut down successfully");
 }
 
 void WindowManager::Update()

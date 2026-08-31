@@ -1,5 +1,6 @@
 #include "Application.hpp"
 
+#include "Logging/LoggingManager.hpp"
 #include "Window/WindowManager.hpp"
 
 namespace Magika
@@ -16,6 +17,7 @@ void Application::Run()
 
     // TODO: Implement a proper main loop with event handling, timing, and rendering
     // TODO: Update loop to use window as loop control
+    // TODO: Change this to be an event based decision
     while (WindowManager::Instance().IsWindowOpen())
     {
         // TODO: Rendering
@@ -29,6 +31,7 @@ void Application::Run()
 
 void Application::Initialize()
 {
+    LoggingManager::Instance().Initialize();
     WindowManager::Instance().Initialize();
 }
 
@@ -40,5 +43,6 @@ void Application::Update()
 void Application::Shutdown()
 {
     WindowManager::Instance().Shutdown();
+    LoggingManager::Instance().Shutdown();
 }
 } // namespace Magika
