@@ -21,10 +21,9 @@ void WindowManager::Initialize()
 
     MK_LOG_TRACE("GLFW initialized successfully");
 
-    // Create a GLFW window
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    // Create a Vulkan-capable GLFW window without an OpenGL context
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
     // TODO: Should set these based on a Settings manager that is stored on disk
     m_window = glfwCreateWindow(800, 600, "Magika", nullptr, nullptr);
@@ -34,7 +33,16 @@ void WindowManager::Initialize()
         throw std::runtime_error("Failed to create GLFW window");
     }
     MK_LOG_TRACE("GLFW window created successfully");
-    glfwMakeContextCurrent(m_window);
+
+    m_extensionCount = 0;
+    m_extensions = glfwGetRequiredInstanceExtensions(&m_extensionCount);
+    MK_LOG_TRACE("Vulkan instance extensions required by GLFW: {}", m_extensionCount);
+    if (m_extensions == nullptr)
+    {
+        glfwDestroyWindow(m_window);
+        glfwTerminate();
+        throw std::runtime_error("Failed to query Vulkan instance extensions");
+    }
 
     MK_LOG_INFO("Window manager initialized successfully");
 }
@@ -51,7 +59,6 @@ void WindowManager::Shutdown()
 
 void WindowManager::Update()
 {
-    glfwSwapBuffers(m_window);
     glfwPollEvents();
 }
 

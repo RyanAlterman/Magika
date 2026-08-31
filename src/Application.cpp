@@ -16,13 +16,10 @@ void Application::Run()
     Initialize();
 
     // TODO: Implement a proper main loop with event handling, timing, and rendering
-    // TODO: Update loop to use window as loop control
     // TODO: Change this to be an event based decision
     while (WindowManager::Instance().IsWindowOpen())
     {
-        // TODO: Rendering
-        glClear(GL_COLOR_BUFFER_BIT);
-
+        // TODO: Vulkan rendering pass goes here.
         Update();
     }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
 namespace Magika
@@ -61,6 +62,26 @@ class WindowManager
      */
     bool IsWindowOpen() const;
 
+    /**
+     * @brief Get the list of extensions required by GLFW to operate in Vulkan.
+     *
+     * @return const char** The list of Vulkan instance extensions required by GLFW.
+     */
+    const char** GetInstanceExtensions() const
+    {
+        return m_extensions;
+    }
+
+    /**
+     * @brief Get the count of Vulkan instance extensions required by GLFW.
+     *
+     * @return uint32_t The number of Vulkan instance extensions required by GLFW.
+     */
+    uint32_t GetInstanceExtensionCount() const
+    {
+        return m_extensionCount;
+    }
+
   protected:
   private:
     /**
@@ -71,6 +92,9 @@ class WindowManager
 
 #pragma region Member Variables
     GLFWwindow* m_window = nullptr;
+
+    uint32_t m_extensionCount = 0;
+    const char** m_extensions = nullptr;
 #pragma endregion
 };
 } // namespace Magika
