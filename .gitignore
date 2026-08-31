@@ -1,5 +1,10 @@
+# Build Artifacts
 [Bb]uild/
 
+# Auto-generated files
+src/Version.hpp
+
+# Pre-generated CMake ignore
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
