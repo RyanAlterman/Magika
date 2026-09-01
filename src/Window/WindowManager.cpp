@@ -8,6 +8,13 @@
 
 namespace Magika
 {
+#pragma region Window Callbacks
+void glfwErrorCallback(int error, const char* description)
+{
+    MK_LOG_ERROR("GLFW error {}: {}", error, description);
+}
+#pragma endregion
+
 WindowManager& WindowManager::Instance()
 {
     static WindowManager instance;
@@ -19,6 +26,7 @@ void WindowManager::Initialize()
     MK_LOG_TRACE("Initializing the Window Manager...");
 
     // Initialize GLFW
+    glfwSetErrorCallback(glfwErrorCallback);
     if (!glfwInit())
         throw std::runtime_error("Failed to initialize GLFW");
 
